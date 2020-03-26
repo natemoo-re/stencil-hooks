@@ -6,7 +6,7 @@ export const useState = <T>(value: T): [T, (value: T) => void] => {
     const i = ref.$$hooks.i++;
     const { args = [], stack = [], length = 0 } = ref.$$hooks;
     if (i === length) {
-        (ref.$$hooks ?? {}).length = stack.push({
+        ref.$$hooks.length = stack.push({
           $: typeof value === "function" ? value() : value,
           _: (ctx, args) => {
             ref.$$hooks = {
